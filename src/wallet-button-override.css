@@ -1,0 +1,145 @@
+/* src/styles/WalletOverride.css */
+
+/* Modal wrapper */
+.wallet-adapter-modal-wrapper {
+  background-color: #1f2937 !important; /* bg-gray-900 */
+  padding: 2rem !important;
+  border-radius: 0.5rem !important; /* Slightly reduced from 0.75rem for consistency */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  max-width: 28rem !important;
+  width: 100% !important;
+  border: 1px solid #4b5563 !important; /* border-gray-700 instead of blue */
+  position: relative !important;
+  font-family: monospace !important; /* Terminal font */
+}
+
+/* Close button */
+.wallet-adapter-modal-button-close {
+  position: absolute !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  color: #9ca3af !important; /* text-gray-400 */
+  transition: color 0.2s !important;
+}
+
+.wallet-adapter-modal-button-close:hover {
+  color: #d1d5db !important; /* text-gray-300 instead of white */
+}
+
+/* Terminal header simulation */
+.wallet-adapter-modal::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  right: 0;
+  height: 2rem;
+  background-color: #374151 !important; /* bg-gray-800 */
+  border: 1px solid #4b5563 !important; /* border-gray-700 */
+  border-bottom: none !important;
+  border-top-left-radius: 0.5rem !important;
+  border-top-right-radius: 0.5rem !important;
+}
+
+.wallet-adapter-modal::after {
+  content: 'dev@wallet:~/connect';
+  position: absolute;
+  top: -1.75rem;
+  left: 2.5rem;
+  color: #9ca3af !important; /* text-gray-400 */
+  font-size: 0.75rem !important; /* text-xs */
+}
+
+/* Dots for terminal header */
+.wallet-adapter-modal .wallet-adapter-modal-title::before {
+  content: '';
+  position: absolute;
+  top: -1.65rem;
+  left: 0.5rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #ef4444 !important; /* bg-red-500 */
+  border-radius: 9999px !important;
+}
+
+.wallet-adapter-modal .wallet-adapter-modal-title::after {
+  content: '';
+  position: absolute;
+  top: -1.65rem;
+  left: 1.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #eab308 !important; /* bg-yellow-500 */
+  border-radius: 9999px !important;
+}
+
+.wallet-adapter-modal .wallet-adapter-modal-title {
+  position: relative;
+}
+
+.wallet-adapter-modal .wallet-adapter-modal-title::before {
+  content: '';
+  position: absolute;
+  top: -1.65rem;
+  left: 2rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #22c55e !important; /* bg-green-500 */
+  border-radius: 9999px !important;
+}
+
+/* Title */
+.wallet-adapter-modal-title {
+  color: #34d399 !important; /* text-green-400 instead of white */
+  font-size: 1rem !important; /* Smaller than 1.5rem for terminal feel */
+  font-weight: normal !important; /* Less bold for terminal style */
+  text-align: left !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Wallet list */
+.wallet-adapter-modal-list {
+  margin-top: 1rem !important;
+  padding: 0 !important;
+}
+
+/* Wallet button */
+.wallet-adapter-button {
+  background: #16a34a !important; /* bg-green-600 instead of gradient */
+  color: #000000 !important; /* text-black instead of white */
+  padding: 0.5rem 1rem !important;
+  border-radius: 0.25rem !important; /* Smaller radius */
+  font-size: 0.75rem !important; /* text-xs instead of 0.875rem */
+  font-weight: normal !important; /* Less bold */
+  transition: background-color 0.2s ease !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0.5rem 0 !important;
+  width: 100% !important;
+}
+
+.wallet-adapter-button:hover {
+  background: #22c55e !important; /* hover:bg-green-500 */
+}
+
+/* Trigger button (e.g., "Connect" button) */
+.wallet-adapter-button-trigger {
+  background: #16a34a !important; /* Consistent with other buttons */
+}
+
+.wallet-adapter-button-trigger:hover {
+  background: #22c55e !important; /* Consistent hover */
+}
+
+/* Ensure consistent margins */
+.wallet-adapter-modal-wrapper .wallet-adapter-button {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Modal overlay */
+.wallet-adapter-modal-overlay {
+  background-color: rgba(31, 41, 55, 0.8) !important; /* gray-900 with opacity */
+}

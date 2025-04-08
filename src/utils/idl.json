@@ -1,0 +1,328 @@
+{
+    "version": "0.1.0",
+    "name": "bug_fun",
+    "instructions": [
+        {
+            "name": "createProfile",
+            "accounts": [
+                {
+                    "name": "profile",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "authority",
+                    "isMut": true,
+                    "isSigner": true
+                },
+                {
+                    "name": "systemProgram",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "displayName",
+                    "type": "string"
+                },
+                {
+                    "name": "description",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "createBounty",
+            "accounts": [
+                {
+                    "name": "bounty",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "authority",
+                    "isMut": true,
+                    "isSigner": true
+                },
+                {
+                    "name": "systemProgram",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "bountyId",
+                    "type": "string"
+                },
+                {
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "name": "description",
+                    "type": "string"
+                },
+                {
+                    "name": "githubRepo",
+                    "type": "string"
+                },
+                {
+                    "name": "imageUri",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "likeBounty",
+            "accounts": [
+                {
+                    "name": "bounty",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "authority",
+                    "isMut": true,
+                    "isSigner": true
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "submitSolution",
+            "accounts": [
+                {
+                    "name": "solution",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "bounty",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "authority",
+                    "isMut": true,
+                    "isSigner": true
+                },
+                {
+                    "name": "systemProgram",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "pullRequestUrl",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "verifySolution",
+            "accounts": [
+                {
+                    "name": "solution",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "bounty",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "authority",
+                    "isMut": true,
+                    "isSigner": true
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "disqualifySolution",
+            "accounts": [
+                {
+                    "name": "solution",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "bounty",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "authority",
+                    "isMut": true,
+                    "isSigner": true
+                }
+            ],
+            "args": []
+        }
+    ],
+    "accounts": [
+        {
+            "name": "UserProfile",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "authority",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "displayName",
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "type": "string"
+                    },
+                    {
+                        "name": "bump",
+                        "type": "u8"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Bounty",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "authority",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "bountyId",
+                        "type": "string"
+                    },
+                    {
+                        "name": "title",
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "type": "string"
+                    },
+                    {
+                        "name": "githubRepo",
+                        "type": "string"
+                    },
+                    {
+                        "name": "imageUri",
+                        "type": "string"
+                    },
+                    {
+                        "name": "likes",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "createdAt",
+                        "type": "i64"
+                    },
+                    {
+                        "name": "bump",
+                        "type": "u8"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Solution",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "bounty",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "authority",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "pullRequestUrl",
+                        "type": "string"
+                    },
+                    {
+                        "name": "submittedAt",
+                        "type": "i64"
+                    },
+                    {
+                        "name": "status",
+                        "type": {
+                            "defined": "SolutionStatus"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "types": [
+        {
+            "name": "SolutionStatus",
+            "type": {
+                "kind": "enum",
+                "variants": [
+                    {
+                        "name": "Pending"
+                    },
+                    {
+                        "name": "Verified"
+                    },
+                    {
+                        "name": "Disqualified"
+                    }
+                ]
+            }
+        }
+    ],
+    "errors": [
+        {
+            "code": 6000,
+            "name": "NameTooLong",
+            "msg": "Display name too long"
+        },
+        {
+            "code": 6001,
+            "name": "DescriptionTooLong",
+            "msg": "Description too long"
+        },
+        {
+            "code": 6002,
+            "name": "TitleTooLong",
+            "msg": "Title too long"
+        },
+        {
+            "code": 6003,
+            "name": "UrlTooLong",
+            "msg": "URL too long"
+        },
+        {
+            "code": 6004,
+            "name": "Unauthorized",
+            "msg": "Unauthorized"
+        },
+        {
+            "code": 6005,
+            "name": "SolutionAlreadyExists",
+            "msg": "Solution already exists"
+        },
+        {
+            "code": 6006,
+            "name": "Overflow",
+            "msg": "Numerical overflow"
+        },
+        {
+            "code": 6007,
+            "name": "IdTooLong",
+            "msg": "Bounty ID too long"
+        }
+    ]
+}
